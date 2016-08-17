@@ -11,22 +11,13 @@ getOneData : function(id){
   return knex('users').innerJoin('stocks', 'users_id', 'users.id').where({users_id : id});
 },
 //ROUTES SETUP (5)
-addListItem : function(list, user){
-  return knex('stocks').insert({'stocks': list, 'users_id': user});
+addStockItem : function(input){
+  return knex.raw("INSERT INTO stocks (user_id, ticker, owned, avgPrice) values (user.id, input.ticker, input.owned, input.avgPrice)")
 },
 //ROUTES SETUP (7)
 deleteItem : function(body){
   return knex('stocks').del().where({id: body});
 },
 //ROUTES SETUP (9)
-editItem : function(id, editListItem){
-  return knex('stocks').date({stocks: editListItem}).where({id: id});
-},
-findUserByUserName : function(userName){
-  return knex('users').where({"userName": userName}).first();
-},
-addUser : function(body){
-  return knex('users').insert(body);
-}
 
 };

@@ -19,7 +19,7 @@ router.get('/:id', function(req, res, next){
 });
 //(ROUTES SETUP (6)
 router.post('/', function(req, res, next){
-  queries.addstocksItem(req.query.stocks, req.query.users_id)
+  queries.addstocksItem(req.query)
   .then(function(data){
       res.json({message: 'stock item added'});
   });
@@ -32,10 +32,5 @@ router.delete('/:id', function(req, res, next){
   });
 });
 //(ROUTES SETUP (10)
-router.put('/:id', function(req, res, next){
-  queries.editItem(req.query.stocks_id, req.query.editstocksItem)
-  .then(function(data){
-      res.json({stocks: data});
-  });
-});
+
 module.exports = router;
